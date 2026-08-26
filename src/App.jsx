@@ -6,7 +6,7 @@ export default function App() {
   return (
     <Suspense fallback={null}>
       <Routes>
-        <Route element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           {/* <Route path="/" element={<Home />} /> */}
         </Route>
       </Routes>
