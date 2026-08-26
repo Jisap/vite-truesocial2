@@ -1,0 +1,367 @@
+================================================================================
+ SETUP GUIDE — Artistic Social Media Marketing (React + Vite + Tailwind CSS)
+================================================================================
+
+This project was delivered to you as ready-to-use SOURCE FILES (no
+node_modules, no lockfile-installed packages). Follow the steps below to get
+it running. Takes about 2 minutes.
+
+--------------------------------------------------------------------------------
+0. PREREQUISITES
+--------------------------------------------------------------------------------
+- Node.js 20.19+ or 22.12+ (Vite 8 / Tailwind 4 requirement)
+- npm 10+ (comes with Node)
+
+Check your version:
+    node -v
+    npm -v
+
+--------------------------------------------------------------------------------
+1. IF YOU'RE STARTING FROM THE PROVIDED FILES (recommended)
+--------------------------------------------------------------------------------
+You already have a full Vite project structure (vite.config.js, index.html,
+src/, public/, package.json). Just install dependencies and run it:
+
+    cd artistic-social-media-marketing
+    npm install
+    npm run dev
+
+Open the URL Vite prints (usually http://localhost:5173).
+
+That's it — skip to step 4 (Tailwind is already wired up, see step 3 to
+understand how).
+
+--------------------------------------------------------------------------------
+2. IF YOU WANT TO RECREATE THE PROJECT FROM SCRATCH
+   (e.g. to merge these files into a different base project)
+--------------------------------------------------------------------------------
+    npm create vite@latest my-app -- --template react
+    cd my-app
+    npm install
+
+Then copy this project's `src/`, `public/`, `index.html` and `vite.config.js`
+over the freshly scaffolded ones (or merge by hand), and continue with step 3.
+
+--------------------------------------------------------------------------------
+3. INSTALLING DEPENDENCIES (already in package.json, run once)
+--------------------------------------------------------------------------------
+Runtime dependencies:
+    npm install react-router-dom swiper gsap yet-another-react-lightbox \
+                 animate.css @fortawesome/fontawesome-free
+
+Tailwind CSS v4 + the official Vite plugin (dev dependency):
+    npm install -D tailwindcss @tailwindcss/vite
+
+--------------------------------------------------------------------------------
+3a. HOW TAILWIND IS CONFIGURED (already done in this project — reference only)
+--------------------------------------------------------------------------------
+Tailwind v4 does not need a tailwind.config.js for this project. It's wired
+up two places:
+
+  1. vite.config.js — the Tailwind Vite plugin is registered:
+
+        import tailwindcss from '@tailwindcss/vite'
+        export default defineConfig({
+          plugins: [react(), tailwindcss()],
+        })
+
+  2. src/index.css — Tailwind is imported and every design token from the
+     original theme (colors, font, custom keyframes) is declared in an
+     `@theme { ... }` block, e.g.:
+
+        @import "tailwindcss";
+        @theme {
+          --color-accent: #bff747;
+          --color-dark: #000000;
+          ...
+        }
+
+     This makes utilities like `bg-accent`, `text-primary`, `border-divider`
+     available everywhere, matching the original :root CSS variables.
+
+If you ever DO want a tailwind.config.js (e.g. to add plugins like
+@tailwindcss/typography), you can still create one — v4 will auto-detect it
+alongside the CSS-based config.
+
+--------------------------------------------------------------------------------
+4. RUNNING THE APP
+--------------------------------------------------------------------------------
+Development server (hot reload):
+    npm run dev
+
+Production build:
+    npm run build
+    → outputs to dist/
+
+Preview the production build locally:
+    npm run preview
+
+Lint:
+    npm run lint
+
+--------------------------------------------------------------------------------
+5. ADDING THE HERO BACKGROUND VIDEO (optional)
+--------------------------------------------------------------------------------
+The original theme streams its hero background video from the template
+author's demo server. That external dependency was intentionally NOT hard-
+coded here. To use your own video:
+
+    1. Drop an .mp4 file into  public/videos/hero-bg-video.mp4
+    2. That's the exact path already referenced in
+       src/components/sections/home/Hero.jsx — no code changes needed.
+
+Until you add one, the <video> element simply shows nothing and the poster
+image (/images/hero-bg.jpg) / dark overlay is what's visible, which still
+looks correct.
+
+--------------------------------------------------------------------------------
+6. RUNNING TESTS
+--------------------------------------------------------------------------------
+Unit / component tests (Vitest + React Testing Library) — no extra setup
+needed, these run entirely in a simulated DOM (jsdom):
+
+    npm test              # run once
+    npm run test:watch    # watch mode while developing
+
+22 tests covering Button, AccordionItem, Pagination, Counter (the
+counter-up animation), the Contact form's validation, the mobile menu's
+open/close + submenu accordion, and the project category filter (the
+Isotope replacement). Note: the two Counter animation tests wait on a real
+2-second requestAnimationFrame loop rather than mocked timers, so under
+heavy system load they can occasionally need a retry — everything else is
+deterministic.
+
+End-to-end tests (Playwright) — these drive a real browser against the
+production build, so they need Playwright's browser binaries downloaded
+once first:
+
+    npx playwright install        # one-time, downloads Chromium + WebKit
+    npm run test:e2e
+
+This builds the app, serves it on port 4173, and runs 44 tests (22 per
+browser: Chromium desktop + Mobile Safari viewport) covering: every page
+renders, detail pages resolve by slug, unknown routes fall back to 404, the
+mobile menu opens/expands/navigates, the contact form validates and
+submits, the project filter narrows results, and the image/video gallery
+lightboxes open. NOTE: `npx playwright install` requires network access to
+download browser binaries — it could not be run in the environment this
+project was built in, so treat the e2e suite as written-but-unverified
+until you run it once locally; the unit test suite above was fully run and
+passes.
+
+--------------------------------------------------------------------------------
+7. PROJECT STATUS
+--------------------------------------------------------------------------------
+Complete. All 17 pages from the original theme are converted: Home, About,
+Services, Service Details, Team, Team Details, Pricing, Testimonials, FAQs,
+Blog, Blog Details, Projects, Project Details, Image Gallery, Video Gallery,
+Contact, 404. See README.md for the folder structure, the original-plugin-to
+-React mapping, and a couple of source-content quirks worth knowing about.
+================================================================================
+
+
+========================== Header Section =======================================
+
+----------------- useStickyHeader.js --------------
+
+/**
+ * Reproduces the original scroll behaviour from js/function.js + the
+ * `.hide` / `.active` rules in custom.css:
+ *   - scrollY <= 150   -> header sits in normal flow, over the hero
+ *   - 150 < scrollY <= 600 -> header slides up out of view
+ *   - scrollY > 600    -> header re-appears, pinned + blurred background
+ *
+ * (In the original CSS both `.hide` and `.active` can be applied at once;
+ * `.active` wins because it's declared later. We reproduce that resolved
+ * end-state directly instead of relying on class order.)
+ */
+
+----------------- CustomCursor.jsx ---------------
+
+/**
+ * Replacement for js/magiccursor.js: a small accent dot that follows the
+ * mouse exactly, plus a larger ring that eases toward it. Automatically
+ * disables itself on touch/coarse-pointer devices.
+ */
+
+============================== Hero Section =================================
+
+------------------------ useReveal.js -----------------
+
+/**
+ * Lightweight replacement for WOW.js. Original markup used
+ * `class="wow fadeInUp" data-wow-delay="0.2s"`; here a component does:
+ *
+ *   const { ref, revealed } = useReveal();
+ *   <div ref={ref} className={`reveal-up ${revealed ? "is-revealed" : ""}`}>
+ *
+ * `delay` (seconds) mirrors data-wow-delay for staggered groups.
+ */
+
+------------------- Reveal.jsx --------------------
+
+/**
+ * Drop-in wrapper replacing `class="wow fadeInUp" data-wow-delay="0.2s"`.
+ * Usage: <Reveal variant="up" delay={0.2}><Card /></Reveal>
+ */
+
+------------------ splitText.js -----------------
+
+/**
+ * Splits a plain string into an array of words, each word being an array
+ * of single characters. Used by <AnimatedText /> to build the per-word /
+ * per-character <span> markup that GSAP then staggers in — a dependency
+ * -free stand-in for GSAP's SplitText plugin.
+ *
+ * NOTE: only pass plain text as children (no nested elements/markup).
+ */
+
+------------------- AnimatedText ----------------
+
+/**
+ * Replaces the original `.text-anime-style-1` / `.text-anime-style-2`
+ * GSAP + SplitText treatment used on the hero and section headings.
+ *
+ * Props:
+ *  - as         tag to render (h1, h2, h3, span...) — default h2
+ *  - variant    "words" (style-1) or "chars" (style-2)
+ *  - text       plain leading text
+ *  - accent     optional trailing text rendered in the accent color
+ *               (mirrors `<span>accent text</span>` in the source markup)
+ */
+
+Elevate your online presence, engage your audience, and meaningful results with tailored social media strategies.
+
+-------------------- Button.jsx ------------------
+
+/**
+ * variant:
+ *  - "default"     premium pill button: glassmorphism, gradient border,
+ *                   shine sweep, click ripple, circular accent arrow that
+ *                   slides + rotates in on hover
+ *  - "highlighted"  solid full-width button, used in pricing cards
+ *  - "readmore"     text link + accent arrow icon with animated underline
+ */
+
+<svg
+          viewBox="0 0 24 24"
+          fill="none"
+          className="absolute right-0 h-5 w-5 -translate-y-1/2 top-1/2 transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:rotate-45"
+        >
+          <path
+            d="M5 12h14M13 5l7 7-7 7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+</svg>
+
+<svg
+          viewBox="0 0 24 24"
+          fill="none"
+          className="h-5 w-5 text-dark sm:h-6 sm:w-6"
+        >
+          <path
+            d="M5 12h14M13 5l7 7-7 7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+</svg>
+
+------------------- Satisfied Clients -------------
+
+/**
+ * The floating "2,500+ Satisfied clients" stat badge used on the Hero,
+ * About/Solution, and Feature sections. Was duplicated 4x inline; also
+ * fixes a real bug where the icon (black stroke) was invisible against
+ * the badge's dark glass background.
+ */
+
+---------------- UseCountUp.js ------------------
+
+/**
+ * Replacement for jquery.counterup.min.js. Animates 0 -> `end` once the
+ * element enters the viewport. Used by <Counter /> for every stat across
+ * the site (satisfied clients, key facts, etc). Supports one decimal
+ * place for stats like "1.1k+".
+ */
+
+=========================== ScrollingTicker Section =======================
+
+-------------------- marquee ----------------------
+
+/**
+ * Pure-CSS infinite marquee, replacing the original scrolling-ticker
+ * markup (two duplicated rows animated with a keyframe translateX).
+ * The item list is rendered twice inside one flex track, and the track
+ * is animated exactly -50% so the loop is seamless.
+ */
+
+============================== Aboutus Section ========================
+
+----------------- RevealImage.jsx ---------------
+
+/**
+ * Faithful port of the original `.reveal` treatment: a mask box wipes
+ * open while the image counter-wipes, revealing it left-to-right.
+ */
+
+------------------ Section Title --------------
+
+/**
+ * Mirrors `.section-title` from the source: a small icon-prefixed eyebrow
+ * label, a large heading (with an accent-colored trailing phrase), and an
+ * optional description paragraph.
+ */
+
+Revolutionizing Brand Identity Through Creative Social Media Strategies That Drive Engagement, Build Connections, and Deliver Results Empowering Businesses to Stand Out, Reach Their Audience.
+
+const aboutList = [
+  { icon: "/images/icon-about-list-item-1.svg", title: "Tailored marketing solutions" },
+  { icon: "/images/icon-about-list-item-2.svg", title: "Proactive trends tracking" },
+  { icon: "/images/icon-about-list-item-3.svg", title: "Affordable packages" },
+];
+
+======================= Services Details ==============================
+
+----------------- Page Header -------------------
+
+/**
+ * Used at the top of every page except Home. Mirrors `.page-header`:
+ * full-width background image, dark overlay, centered title + breadcrumb.
+ */
+
+<p>
+          Our digital marketing services are designed to elevate your brand and reach your target audience
+          effectively. We develop customized strategies that include SEO, PPC advertising, social media marketing,
+          content marketing, and email campaigns. By leveraging data-driven insights and the latest trends, we
+          maximize engagement, drive traffic, and boost conversions, ensuring a measurable return on your
+          investment. Let us help you grow your digital presence and achieve your business goals.
+</p>
+
+<p>
+          With a focus on data-driven insights, we build customized strategies that drive traffic, boost
+          engagement, and maximize ROI. Let us help you reach your business goals with impactful digital marketing.
+</p>
+
+<p>
+          Our digital marketing approach is a data-driven strategy that combines targeted outreach with creative
+          content. We focus on reaching the right audience through precision techniques like SEO, PPC, and social
+          media advertising, supported by engaging content marketing and email campaigns.
+</p>
+
+<p>
+          We utilize audience segmentation to divide your customer base into distinct groups based on demographics,
+          interests, and behaviors. This allows us to deliver personalized content and messaging, ensuring
+          relevance and higher engagement rates.
+</p>
+
+<p>
+          Our social marketing process begins with discovery and research to understand your goals. We then
+          develop a tailored strategy and implement campaigns across various channels. Continuous monitoring and
+          optimization ensure effectiveness, followed by regular reporting to track performance. Finally, we refine
+          and scale efforts for sustained growth and success.
+</p>

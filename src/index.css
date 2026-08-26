@@ -1,0 +1,276 @@
+@import "tailwindcss";
+@import "animate.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import "yet-another-react-lightbox/styles.css";
+
+/*
+  Design tokens
+  -------------
+  Mirrors the :root variables from the original css/custom.css so every
+  Tailwind utility (bg-accent, text-primary, border-divider, font-display...)
+  maps 1:1 to the source theme. Change a value here and it updates everywhere.
+*/
+@theme {
+  --color-primary: #ffffff; /* --primary-color   : headings / white text  */
+  --color-secondary: #1b1b1b; /* --secondary-color : offcanvas / card bg    */
+  --color-body: #f5f5f4; /* --text-color      : paragraph text         */
+  --color-accent: #bff747; /* --accent-color    : lime green brand color */
+  --color-dark: #000000; /* --dark-color      : page background        */
+  --color-divider: #ffffff1a; /* --divider-color   : 10% white border       */
+  --color-divider-dark: #f7fbfa1a; /* --dark-divider-color               */
+  --color-error: #e65757; /* --error-color     : form errors            */
+
+  --font-display: "Plus Jakarta Sans", serif;
+
+  --breakpoint-xs: 480px;
+
+  --container-max: 1300px;
+
+  --animate-rotate-loading: rotate-loading 1.5s linear infinite;
+  --animate-float-y: float-y 3s infinite alternate ease-in-out;
+  --animate-float-x: float-x 2.5s infinite alternate ease-in-out;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-vertical: marquee-vertical 20s linear infinite;
+  --animate-spin-slow: spin 12s linear infinite;
+  --animate-shine: shine 1.1s ease forwards;
+  --animate-ripple: ripple 0.65s ease-out forwards;
+  --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-120%) skewX(-20deg);
+    }
+    100% {
+      transform: translateX(220%) skewX(-20deg);
+    }
+  }
+  @keyframes ripple {
+    0% {
+      transform: scale(0);
+      opacity: 0.45;
+    }
+    100% {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(0.96);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes rotate-loading {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes float-y {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50px);
+    }
+  }
+  @keyframes float-x {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-30px);
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base layer                                                         */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-body font-display text-base font-normal leading-[1.1em] antialiased;
+    background-image: url("/images/section-bg-circle-shape.png");
+    background-repeat: repeat-y;
+    background-position: top 900px center;
+    background-size: 100% auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply m-0 font-bold leading-[1.2em] text-primary;
+  }
+
+  p {
+    @apply mb-[1.6em] leading-[1.7em];
+  }
+
+  img {
+    @apply max-w-full;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  ::selection {
+    @apply bg-accent text-dark;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Small set of hand-written utilities for effects that are awkward   */
+/* to express as pure Tailwind utility chains (masks, custom cursor,  */
+/* marquee track, line-clamp fallback isn't needed since Tailwind     */
+/* ships that one already).                                          */
+/* ------------------------------------------------------------------ */
+@layer components {
+  /* Container matching the template's 1300px max-width (Tailwind's
+     default `container` centers content but doesn't cap at a custom
+     width without configuration, so we define it explicitly here). */
+  .container-custom {
+    @apply mx-auto w-full max-w-[1300px] px-[15px];
+  }
+
+  /* Reveal-on-scroll base state, toggled by the useReveal hook which
+     adds/removes `.is-revealed`. Direction variants below mirror the
+     wow.js classes (fadeInUp, fadeInLeft, fadeInRight, zoomIn) used
+     throughout the original markup. */
+  .reveal-up {
+    @apply translate-y-10 opacity-0 transition-all duration-700 ease-out;
+  }
+  .reveal-left {
+    @apply -translate-x-10 opacity-0 transition-all duration-700 ease-out;
+  }
+  .reveal-right {
+    @apply translate-x-10 opacity-0 transition-all duration-700 ease-out;
+  }
+  .reveal-zoom {
+    @apply scale-90 opacity-0 transition-all duration-700 ease-out;
+  }
+  .is-revealed {
+    @apply translate-x-0 translate-y-0 scale-100 opacity-100;
+  }
+
+  /* Diagonal shine sweep used on images (.image-anime in the source) */
+  .img-shine {
+    @apply relative overflow-hidden;
+  }
+  .img-shine::after {
+    content: "";
+    @apply pointer-events-none absolute top-1/2 left-1/2 h-0 w-[215%] -translate-x-1/2 -translate-y-1/2 rotate-[-45deg] bg-white/30 transition-all duration-500 ease-linear;
+  }
+  .img-shine:hover::after {
+    @apply h-[250%] bg-transparent;
+  }
+
+  /* Premium card hover: lift + soft shadow + border glow + a hair of
+     rotation. Applied via `group` on the card root; combine with
+     `card-premium-child` on inner elements that should react too. */
+  .card-premium {
+    @apply relative transition-all duration-500 ease-out;
+    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0,0,0,0.55)];
+  }
+  .card-premium::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 -z-10 rounded-[inherit] opacity-0 transition-opacity duration-500;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+  .card-premium:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Reusable accent glow shadow, used on hover for buttons/badges/icons */
+  .glow-accent {
+    box-shadow: 0 0 0 0 transparent;
+    transition: box-shadow 0.5s ease;
+  }
+  .glow-accent:hover {
+    box-shadow:
+      0 0 30px -4px color-mix(in srgb, var(--color-accent) 55%, transparent),
+      0 12px 30px -12px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Forces any logo (colored PNG/SVG, dark or light) to pure white while
+     preserving transparency + antialiasing — the standard
+     brightness(0) + invert(1) trick. CSS-filter-only, no re-export needed. */
+  .logo-force-white {
+    filter: brightness(0) invert(1);
+    opacity: 0.55;
+    transition:
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+  .logo-force-white:hover {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+/* Gradient-border pill wrapper for the premium primary button. Two-layer
+   trick: outer element paints the gradient, 1.5px of padding reveals it
+   as a hairline border, inner element sits on top with the real glass
+   background. Declared outside @layer so specificity always wins over
+   plain utility backgrounds. */
+.btn-gradient-border {
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--color-accent) 80%, transparent) 0%,
+    transparent 35%,
+    transparent 65%,
+    color-mix(in srgb, var(--color-accent) 80%, transparent) 100%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  transition: background-position 0.6s ease;
+}
+.btn-gradient-border:hover {
+  background-position: 100% 50%;
+}
+
+/* Marquee track: two duplicated flex rows scrolled with a CSS
+   animation, exactly like the original scrolling-ticker markup. */
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Custom cursor (mousecursor.css equivalent) */
+.cursor-dot,
+.cursor-outline {
+  @apply pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference;
+}
