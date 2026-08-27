@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom"
 import Header from "./Header"
 import { useEffect } from "react"
+import Preloader from "./Preloader";
 
 
 
@@ -21,6 +22,7 @@ const Layout = () => {
 
   return (
     <>
+      <Preloader />
       <Header />
     </>
   )
