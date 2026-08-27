@@ -1,5 +1,6 @@
 import { siteConfig, socialLinks } from "@/data/siteConfig"
-import { useLockBodyScroll } from "@/hooks/useLockBodyScroll"
+import useLockBodyScroll from "../../hooks/useLockBodyScroll"
+
 
 const contactItems = [
   { icon: "/images/icon-phone-accent.svg", label: "Phone", value: siteConfig.phone },
@@ -7,30 +8,34 @@ const contactItems = [
   { icon: "/images/icon-location-accent.svg", label: "Address", value: siteConfig.address }
 ]
 
-const HeaderSidebar = (open, onClose) => {
+const HeaderSidebar = ({ open, onClose }) => {
 
   useLockBodyScroll(open)
 
   return (
     <>
       <div
-        onClick={onClose} //
+        onClick={onClose} // Establece el estado de open en false, cerrando el sidebar
         aria-hidden="true"
         className={`
           fixed inset-0 z-100 bg-black/60 transition-opacity duration-300
           ${open ? "opacity-100" : "pointer-events-none opacity-0"}  
         `}
       >
-        <div className={`
+        {/* Contenedor del sidebar */}
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className={`
           fixed top-0 right-0 z-101 h-full w-full max-w-[375px] bg-secondary px-[30px] py-[80px] transition-transform duration-300 ease-in-out
           ${open ? "translate-x-0" : "translate-x-full"}
           `}
         >
+          {/* Botón para cerrar el sidebar */}
           <button
             type="button"
             onClick={onClose}
             aria-label="Cerrar menú lateral"
-            className="absolute top-[30px] right-[37px] flex h-9 w-0 items-center justify-center rounded-full border border-primary text-primary"
+            className="absolute top-[30px] right-[37px] flex h-9 w-9 items-center justify-center rounded-full border border-primary text-primary transition-colors duration-300 hover:border-accent hover:text-accent"
           >
             <i className="fa-solid fa-xmark"></i>
           </button>
@@ -54,6 +59,21 @@ const HeaderSidebar = (open, onClose) => {
               <h3 className="mb-5 text-[22px] font-bold text-primary capitalize">
                 Stay Connected
               </h3>
+
+              <ul className="mb-5 flex items-center justify-center gap-2 text-[22px] font-bold text-primary">
+                {socialLinks.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      aria-label={link.name}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-accent text-accent 
+                      transition-colors duration-300 hover:border-primary"
+                    >
+                      <i className={link.icon}></i>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom"
 import { navigation } from "@/data/navigation"
 import { siteConfig, socialLinks } from "@/data/siteConfig"
 import { useStickyHeader } from "../../hooks/useStickyHeader"
+import HeaderSidebar from "./HeaderSidebar"
 
 
 
@@ -10,6 +11,7 @@ import { useStickyHeader } from "../../hooks/useStickyHeader"
 const Header = () => {
 
   const stickyState = useStickyHeader();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const wrapperClass =
     stickyState === "sticky"
@@ -103,10 +105,30 @@ const Header = () => {
               ))}
             </ul>
 
-
+            {/* Botón para abrir el sidebar */}
+            <button
+              type="button"
+              aria-label="Abrir menú lateral"
+              onClick={() => setSidebarOpen(true)} // Establece el estado de open en true, abriendo el sidebar
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-divider transition-all duration-300 hover:scale-110 hover:bg-accent"
+            >
+              <span className="grid h-3 w-3 grid-cols-2 gap-[3px]">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <span key={i} className="h-[3px] w-[3px] rounded-full bg-primary"></span>
+                ))}
+              </span>
+            </button>
           </div>
+
+          {/* Mobile trigger */}
+
         </nav>
       </div>
+
+      <HeaderSidebar
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
     </header>
   )
 }
