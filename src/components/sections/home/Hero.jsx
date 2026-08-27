@@ -20,6 +20,14 @@ const Hero = () => {
       </div>
 
       {/* Floating glow orbs - pure decoration */}
+      <div
+        aria-hidden="true"
+        className='animate-pulse-glow pointer-events-none absolute -top-32 -left-24 h-[420px] w-[420px] bg-accent/25 blur-[120px]'
+      />
+      <div
+        aria-hidden="true"
+        className='animate-pulse-glow pointer-events-none absolute top-1/3 -right-32 h-[380px] w-[380px] bg-accent/15 blur-[130px] [animation-delay:1.2s]'
+      />
     </div>
   )
 }
