@@ -10,19 +10,29 @@ const contactItems = [
 
 const HeaderSidebar = ({ open, onClose }) => {
 
-  useLockBodyScroll(open)
+  useLockBodyScroll(open); // Bloquea el scroll del <body> mientras el sidebar esté abierto
 
   return (
     <>
+      {/* Overlay oscuro que cubre toda la pantalla.
+      - onClick cierra el sidebar al hacer click fuera del panel
+      - opacity + pointer-events controlan la animación de entrada/salida
+        y evitan que se pueda interactuar con él cuando está cerrado
+      - aria-hidden debe reflejar el estado real (!open), no ser fijo 
+      */}
       <div
         onClick={onClose} // Establece el estado de open en false, cerrando el sidebar
-        aria-hidden="true"
+        aria-hidden={!open}
         className={`
           fixed inset-0 z-100 bg-black/60 transition-opacity duration-300
           ${open ? "opacity-100" : "pointer-events-none opacity-0"}  
         `}
       >
-        {/* Contenedor del sidebar */}
+        {/* Panel deslizante del sidebar.
+            - stopPropagation evita que el click DENTRO del panel
+              se propague al overlay y lo cierre accidentalmente
+            - translate-x-full / translate-x-0 generan el efecto "drawer" 
+        */}
         <div
           onClick={(e) => e.stopPropagation()}
           className={`
@@ -30,7 +40,7 @@ const HeaderSidebar = ({ open, onClose }) => {
           ${open ? "translate-x-0" : "translate-x-full"}
           `}
         >
-          {/* Botón para cerrar el sidebar */}
+          {/* Botón de cierre explícito */}
           <button
             type="button"
             onClick={onClose}
@@ -40,9 +50,12 @@ const HeaderSidebar = ({ open, onClose }) => {
             <i className="fa-solid fa-xmark"></i>
           </button>
 
+          {/* Bloque de datos de contacto, generado dinámicamente
+              a partir del array contactItems 
+          */}
           <div className="mt-16 flex flex-col gap-8">
             {contactItems.map((item) => (
-              <div key={item.label} className="border-b boder-divider pb-8 text-center">
+              <div key={item.label} className="border-b border-divider pb-8 text-center">
                 <img src={item.icon} alt="" className="mx-auto mb-5 h-10 w-10" />
 
                 <h3 className="mb-2 text-[22px] font-bold text-primary capitalize">
@@ -55,6 +68,7 @@ const HeaderSidebar = ({ open, onClose }) => {
               </div>
             ))}
 
+            {/* Bloque de redes sociales */}
             <div className="text-center">
               <h3 className="mb-5 text-[22px] font-bold text-primary capitalize">
                 Stay Connected

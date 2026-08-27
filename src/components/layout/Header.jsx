@@ -4,6 +4,7 @@ import { navigation } from "@/data/navigation"
 import { siteConfig, socialLinks } from "@/data/siteConfig"
 import { useStickyHeader } from "../../hooks/useStickyHeader"
 import HeaderSidebar from "./HeaderSidebar"
+import MobileMenu from "./MobileMenu"
 
 
 
@@ -12,6 +13,7 @@ const Header = () => {
 
   const stickyState = useStickyHeader();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const wrapperClass =
     stickyState === "sticky"
@@ -121,6 +123,16 @@ const Header = () => {
           </div>
 
           {/* Mobile trigger */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Abrir menú móvil"
+            className="flex h-[38px] w-[38px] flex-col items-center justify-center gap-[5px] rounded-lg bg-accent transition-transform duration-300 hover:scale-105 lg:hidden"
+          >
+            <span className="h-[2px] w-5 bg-dark" />
+            <span className="h-[2px] w-5 bg-dark" />
+            <span className="h-[2px] w-5 bg-dark" />
+          </button>
 
         </nav>
       </div>
@@ -128,6 +140,11 @@ const Header = () => {
       <HeaderSidebar
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
+      />
+
+      <MobileMenu
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
       />
     </header>
   )

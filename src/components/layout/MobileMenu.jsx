@@ -2,22 +2,24 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { navigation } from "@/data/navigation"
 import { siteConfig } from "@/data/siteConfig"
-import { useLockBodyScroll } from "@/hooks/useLockBodyScroll"
+import useLockBodyScroll from "@/hooks/useLockBodyScroll"
 
 
 const MobileMenu = ({ open, onClose }) => {
 
-  const [openSubmenu, setOpenSubmenu] = useState(null)
-  const toggleSubmenu = (key) => {
-    setOpenSubmenu(prev => prev === key ? null : key);
-  }
+  useLockBodyScroll(open); // Bloquea el scroll del <body> mientras el sidebar esté abierto
+  const [openSubmenu, setOpenSubmenu] = useState(null); // Controla que submenú está desplegado. null = ninguno abierto
+
 
   return (
+    // Contenedor de pantalla completa que actúa como el menú móvil.
+    // translate-x-full lo saca de la vista cuando open=false
     <div className={`
       fixed inset-0 z-101 bg-dark transition-transform duration-300 ease-in-out lg:hidden
       ${open ? "translate-x-0" : "translate-x-full"}
     `}
     >
+      {/* Cabecera del menú: logo + botón de cerrar */}
       <div className="flex items-center justify-between border-b border-divider px-6 py-5">
         <Link to="/" onClick={onClose}>
           <img
@@ -37,15 +39,17 @@ const MobileMenu = ({ open, onClose }) => {
         </button>
       </div>
 
+      {/* Lista de navegación con scroll propio (por si hay muchos items) */}
       <nav className="max-h-[calc(100%-80px)] overflow-y-auto px-6 py-6">
         <ul className="flex flex-col divide-y divide-divider">
           {navigation.map((item) => (
             <li key={item.label} className="py-3">
               {item.children ? (
                 <>
+                  {/* Botón que expande/colapsa el submenú de este item */}
                   <button
                     type="button"
-                    onClick={() => setOpenSubmenu(openSubmenu === item.label ? nnull : item.label)}
+                    onClick={() => setOpenSubmenu(openSubmenu === item.label ? null : item.label)}
                     aria-expanded={openSubmenu === item.label}
                     className="flex w-full items-center justify-between text-lg font-semibold text-primary capitalize"
                   >
@@ -55,6 +59,8 @@ const MobileMenu = ({ open, onClose }) => {
                     `} />
                   </button>
 
+                  {/* Truco grid-rows [0fr]→[1fr] para animar altura
+                      de "auto" sin conocerla de antemano */}
                   <div className={`
                     grid overflow-hidden transition-all duration-300 
                     ${openSubmenu === item.label ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}
@@ -76,6 +82,7 @@ const MobileMenu = ({ open, onClose }) => {
                   </div>
                 </>
               ) : (
+                // Item de navegación simple, sin hijos
                 <Link
                   to={item.href}
                   onClick={onClose}
