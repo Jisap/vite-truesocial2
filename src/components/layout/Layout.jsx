@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom"
 import Header from "./Header"
 import { useEffect } from "react"
 import Preloader from "./Preloader";
+import CustomCursor from "../ui/CustomCursor";
 
 
 
@@ -23,6 +24,7 @@ const Layout = () => {
   return (
     <>
       <Preloader />
+      <CustomCursor />
       <Header />
     </>
   )
