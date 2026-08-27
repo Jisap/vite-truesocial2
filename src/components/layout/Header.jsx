@@ -71,9 +71,9 @@ const Header = () => {
                     <NavLink
                       to={item.href}
                       className={({ isActive }) =>
-                        `relative block px-[15px] text-base font-semibold capitalize transition-colors duration-300 
+                        `relative block px-[15px] text-base font-semibold capitalize transition-colors duration-300 after:absolute after:bottom-0
                         after:left-[15px] after:h-[2px] after:bg-accent after:transition-all after:duration-300 after:content-['']
-                        hover:text-accent hover:after:w-[calc(100%--30px)] 
+                        hover:text-accent hover:after:w-[calc(100%-30px)] 
                         ${isActive ? "text-accent after:w-[calc(100%-30px)]" : "text-primary after:w-0"}
                       `
                       }
@@ -85,6 +85,8 @@ const Header = () => {
               ))}
             </ul>
           </div>
+
+
         </nav>
       </div>
     </header>
