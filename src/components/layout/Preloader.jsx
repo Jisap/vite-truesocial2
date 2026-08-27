@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from 'react'
 
+
+/**
+ * Componente de React que muestra una pantalla de carga (preloader) mientras la página termina de cargar, 
+ * y luego desaparece con una animación suave.
+ */
+
 const Preloader = () => {
 
-  const [visible, setVisible] = useState(true)
-  const [fading, setFading] = useState(false)
+  const [visible, setVisible] = useState(true);               // Controla si el componente se renderiza o no (empieza en true)
+  const [fading, setFading] = useState(false);                // Controla si está en proceso de desvanecerse (empieza en false).   
 
   useEffect(() => {
     const finish = () => {
-      setFading(true)
-      setTimeout(() => setVisible(false), 600)
+      setFading(true);                                        // fadin=true pone opacity-0 iniciando la transición de opacidad
+      setTimeout(() => setVisible(false), 600);               // después de 600ms, visible pasa a false y el componente deja de renderizarse
     }
 
-    if (document.readyState === "complete") {
+    if (document.readyState === "complete") {                 // Si la página está completamente cargada, llama a finish()
       finish()
     } else {
-      window.addEventListener("load", finish)
-      return () => window.removeEventListener("load", finish)
+      window.addEventListener("load", finish)                 // Si no, espera a que la página termine de cargar y llama a finish()
+      return () => window.removeEventListener("load", finish) // Limpia el event listener
     }
   }, [])
 
