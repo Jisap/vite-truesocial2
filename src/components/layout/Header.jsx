@@ -58,7 +58,7 @@ const Header = () => {
                             >
                               <Link
                                 to={child.href}
-                                className="block px-5 py-[6px] text-dark capitalize transition-all duration-300 hover:p.-6 hover:text-primary"
+                                className="block px-5 py-[6px] text-dark capitalize transition-all duration-300 hover:pl-6 hover:text-primary"
                               >
                                 {child.label}
                               </Link>
@@ -86,7 +86,25 @@ const Header = () => {
             </ul>
           </div>
 
+          {/* Social + Sidebar trigger */}
+          <div className="hidden items-center lg:flex">
+            <ul className="mr-5 flex items-center">
+              {socialLinks.map((s) => (
+                <li key={s.name} className="mr-4 last:mr-0">
+                  <a
+                    href={s.href}
+                    aria-label={s.name}
+                    className="inline-block text-xl text-accent transition-all duration-300 hover:-translate-y-0.5 hover:scale-110
+                      hover:text-primary hover:drop-shadow-[0_0_8px_rgba(191,247,71,0.7)]"
+                  >
+                    <i className={s.icon}></i>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
+
+          </div>
         </nav>
       </div>
     </header>
