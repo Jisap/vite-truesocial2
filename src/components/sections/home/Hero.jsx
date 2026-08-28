@@ -2,6 +2,7 @@ import React from 'react'
 import Reveal from '../../ui/Reveal'
 import AnimatedText from '../../ui/AnimatedText'
 import Button from '../../ui/Button'
+import FloatingIcon from '../../ui/FloatingIcon'
 
 const Hero = () => {
   return (
@@ -89,6 +90,18 @@ const Hero = () => {
                   className='aspect-[1/1.26] w-full object-contain drop-shadow-[0_30_px_60px_rgba(0,0,0,0.5)]'
                 />
               </figure>
+
+              <div className='animate-float-y absolute top-[100px] left-0'>
+                <FloatingIcon src="/images/icon-hero-img-1.svg" />
+              </div>
+
+              <div className='animate-float-y absolute right-0 bottom-[180px] [animation-delay:0.5s]'>
+                <FloatingIcon src="/images/icon-hero-img-2.svg" />
+              </div>
+            </div>
+
+            <div className='absolute bottom-[30px] left-[10px] sm:left-[60px]'>
+
             </div>
           </div>
         </div>
