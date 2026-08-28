@@ -28,6 +28,15 @@ const Hero = () => {
         aria-hidden="true"
         className='animate-pulse-glow pointer-events-none absolute top-1/3 -right-32 h-[380px] w-[380px] bg-accent/15 blur-[130px] [animation-delay:1.2s]'
       />
+
+      <div className='container-custom relative z-10'>
+        <div className='grid items-center gap-12 lg:grid-cols-2'>
+          {/* Hero content */}
+          <div>
+
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
