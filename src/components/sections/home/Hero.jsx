@@ -1,6 +1,7 @@
 import React from 'react'
 import Reveal from '../../ui/Reveal'
 import AnimatedText from '../../ui/AnimatedText'
+import Button from '../../ui/Button'
 
 const Hero = () => {
   return (
@@ -64,7 +65,13 @@ const Hero = () => {
               delay={0.2}
               className='mt-8 flex flex-wrap items-center gap-6'
             >
+              <Button href="/contact">
+                get started
+              </Button>
 
+              <Button href="/about" variant="readmore">
+                Learn More
+              </Button>
             </Reveal>
           </div>
         </div>
