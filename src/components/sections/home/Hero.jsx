@@ -1,10 +1,11 @@
 import React from 'react'
+import Reveal from '../../ui/Reveal'
 
 const Hero = () => {
   return (
     <div className='hero relative flex min-h-screen items-center overflow-hidden pt-[140px] pb-[90px] lg:pt-[180px]'>
       {/* Background video, dimmed with a dark overlay */}
-      <div className='absolute inset-0 h-ful w-full'>
+      <div className='absolute inset-0 h-full w-full'>
         <video
           autoPlay
           muted
@@ -33,7 +34,14 @@ const Hero = () => {
         <div className='grid items-center gap-12 lg:grid-cols-2'>
           {/* Hero content */}
           <div>
-
+            <Reveal
+              variant="up"
+              className='mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 
+              text-xs font-bold tracking-[0.08em] text-primary uppercase backdrop-blur-[20px]'
+            >
+              <span className='h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_10px_2px_rgba(191,247,71,0.8)]' />
+              <span>Trusted social media growth partner</span>
+            </Reveal>
           </div>
         </div>
       </div>
