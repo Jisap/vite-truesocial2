@@ -74,6 +74,23 @@ const Hero = () => {
               </Button>
             </Reveal>
           </div>
+
+          {/* Hero image + floating decor */}
+          <div className='relative pl-0 text-right lg:pl-12.5'>
+            <div className='relative mx-auto max-w-130 pr-0 lg:pr-7.5'>
+              <div
+                className='absolute inset-0 -z-10 rounded-full bg-accent/20 blur-[80px]'
+              />
+
+              <figure>
+                <img
+                  src="/images/hero-image.png"
+                  alt="Social media Marketing"
+                  className='aspect-[1/1.26] w-full object-contain drop-shadow-[0_30_px_60px_rgba(0,0,0,0.5)]'
+                />
+              </figure>
+            </div>
+          </div>
         </div>
       </div>
     </div>
