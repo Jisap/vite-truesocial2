@@ -6,6 +6,8 @@ import { splitWords, splitChars } from "@/lib/splitText"
 
 gsap.registerPlugin(ScrollTrigger);
 
+
+// Renderiza el texto separado en palabras o letras según la variante
 const Words = ({ text, variant }) => {
   const words = splitWords(text || ""); // Separa el texto en palabras
   return words.map((word, wi) => (      // Itera sobre cada palabra
@@ -77,7 +79,9 @@ const AnimatedText = ({
       ref={ref}
       className={className}
     >
+      {/* Se renderiza el texto separado en palabras o letras según la variante */}
       <Words text={text} variant={variant} />
+      {/* Si hay texto de acento, se renderiza con la clase text-accent */}
       {accent ? (
         <>
           {" "}

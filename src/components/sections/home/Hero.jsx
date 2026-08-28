@@ -1,5 +1,6 @@
 import React from 'react'
 import Reveal from '../../ui/Reveal'
+import AnimatedText from '../../ui/AnimatedText'
 
 const Hero = () => {
   return (
@@ -41,6 +42,29 @@ const Hero = () => {
             >
               <span className='h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_10px_2px_rgba(191,247,71,0.8)]' />
               <span>Trusted social media growth partner</span>
+            </Reveal>
+
+            <AnimatedText
+              as="h1"
+              variant="chars"
+              text="Grow Your Brand with Powerful"
+              accent="Social Media Strategies"
+              className="text-[38px] leading-[1.5em] font-light text-primary sm:text-[48px] lg:text-[68px]"
+            />
+
+            <Reveal
+              as="p"
+              delay={0.1}
+              className='mt-5 max-w-[520px] text-lg'
+            >
+              Elevate your online presence, engage your audience, and meaningful results with tailored social media strategies.
+            </Reveal>
+
+            <Reveal
+              delay={0.2}
+              className='mt-8 flex flex-wrap items-center gap-6'
+            >
+
             </Reveal>
           </div>
         </div>
