@@ -5,6 +5,12 @@ import SectionTitle from '../../ui/SectionTitle'
 import Reveal from '../../ui/Reveal'
 import Button from '../../ui/Button'
 
+const aboutList = [
+  { icon: "/images/icon-about-list-item-1.svg", title: "Tailored marketing solutions" },
+  { icon: "/images/icon-about-list-item-2.svg", title: "Proactive trends tracking" },
+  { icon: "/images/icon-about-list-item-3.svg", title: "Affordable packages" },
+];
+
 const AboutUs = () => {
   return (
     <section className='py-20 lg:py-[100px]'>
@@ -69,6 +75,28 @@ const AboutUs = () => {
                 </div>
               </div>
             </Reveal>
+
+            <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3'>
+              {aboutList.map((item, i) => (
+                <Reveal
+                  key={item.title}
+                  delay={i * 0.2}
+                  className='flex items-center gap-4 sm:flex-col sm:items-start'
+                >
+                  <div className='flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary'>
+                    <img
+                      src={item.icon}
+                      alt="Icon list"
+                      className="h-6 w-6"
+                    />
+                  </div>
+
+                  <h3 className='text-base font-bold text-primary capitalize'>
+                    {item.title}
+                  </h3>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </div>
