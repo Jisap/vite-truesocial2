@@ -1,4 +1,4 @@
-import React from 'react'
+import Counter from "./Counter"
 
 const SatisfiedClientsBadge = ({ className = "" }) => {
   return (
@@ -19,8 +19,12 @@ const SatisfiedClientsBadge = ({ className = "" }) => {
 
       <div className='text-left'>
         <h3 className='text-2xl font-bold text-primary'>
-
+          <Counter end={2500} suffix="+" />
         </h3>
+
+        <p className='mb-0 text-sm capitalize'>
+          Satisfied Clients
+        </p>
       </div>
     </div>
   )

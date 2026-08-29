@@ -3,6 +3,7 @@ import Reveal from '../../ui/Reveal'
 import AnimatedText from '../../ui/AnimatedText'
 import Button from '../../ui/Button'
 import FloatingIcon from '../../ui/FloatingIcon'
+import SatisfiedClientsBadge from '../../ui/SatisfiedClientsBadge'
 
 const Hero = () => {
   return (
@@ -101,7 +102,7 @@ const Hero = () => {
             </div>
 
             <div className='absolute bottom-[30px] left-[10px] sm:left-[60px]'>
-
+              <SatisfiedClientsBadge />
             </div>
           </div>
         </div>
