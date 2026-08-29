@@ -11,14 +11,22 @@
   maps 1:1 to the source theme. Change a value here and it updates everywhere.
 */
 @theme {
-  --color-primary: #ffffff; /* --primary-color   : headings / white text  */
-  --color-secondary: #1b1b1b; /* --secondary-color : offcanvas / card bg    */
-  --color-body: #f5f5f4; /* --text-color      : paragraph text         */
-  --color-accent: #bff747; /* --accent-color    : lime green brand color */
-  --color-dark: #000000; /* --dark-color      : page background        */
-  --color-divider: #ffffff1a; /* --divider-color   : 10% white border       */
-  --color-divider-dark: #f7fbfa1a; /* --dark-divider-color               */
-  --color-error: #e65757; /* --error-color     : form errors            */
+  --color-primary: #ffffff;
+  /* --primary-color   : headings / white text  */
+  --color-secondary: #1b1b1b;
+  /* --secondary-color : offcanvas / card bg    */
+  --color-body: #f5f5f4;
+  /* --text-color      : paragraph text         */
+  --color-accent: #bff747;
+  /* --accent-color    : lime green brand color */
+  --color-dark: #000000;
+  /* --dark-color      : page background        */
+  --color-divider: #ffffff1a;
+  /* --divider-color   : 10% white border       */
+  --color-divider-dark: #f7fbfa1a;
+  /* --dark-divider-color               */
+  --color-error: #e65757;
+  /* --error-color     : form errors            */
 
   --font-display: "Plus Jakarta Sans", serif;
 
@@ -40,26 +48,32 @@
     0% {
       transform: translateX(-120%) skewX(-20deg);
     }
+
     100% {
       transform: translateX(220%) skewX(-20deg);
     }
   }
+
   @keyframes ripple {
     0% {
       transform: scale(0);
       opacity: 0.45;
     }
+
     100% {
       transform: scale(2.6);
       opacity: 0;
     }
   }
+
   @keyframes pulse-glow {
+
     0%,
     100% {
       opacity: 0.35;
       transform: scale(0.96);
     }
+
     50% {
       opacity: 0.6;
       transform: scale(1.04);
@@ -70,38 +84,47 @@
     from {
       transform: rotate(0deg);
     }
+
     to {
       transform: rotate(360deg);
     }
   }
+
   @keyframes float-y {
     0% {
       transform: translateY(0);
     }
+
     100% {
       transform: translateY(-50px);
     }
   }
+
   @keyframes float-x {
     0% {
       transform: translateX(0);
     }
+
     100% {
       transform: translateX(-30px);
     }
   }
+
   @keyframes marquee {
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-50%);
     }
   }
+
   @keyframes marquee-vertical {
     from {
       transform: translateY(0);
     }
+
     to {
       transform: translateY(-100%);
     }
@@ -157,6 +180,7 @@
 /* ships that one already).                                          */
 /* ------------------------------------------------------------------ */
 @layer components {
+
   /* Container matching the template's 1300px max-width (Tailwind's
      default `container` centers content but doesn't cap at a custom
      width without configuration, so we define it explicitly here). */
@@ -168,18 +192,25 @@
      adds/removes `.is-revealed`. Direction variants below mirror the
      wow.js classes (fadeInUp, fadeInLeft, fadeInRight, zoomIn) used
      throughout the original markup. */
+
+  /* Define el punto de partida, estando 10 unidades desplazado hacia abajo y completamente transparente*/
   .reveal-up {
     @apply translate-y-10 opacity-0 transition-all duration-700 ease-out;
   }
+
   .reveal-left {
     @apply -translate-x-10 opacity-0 transition-all duration-700 ease-out;
   }
+
   .reveal-right {
     @apply translate-x-10 opacity-0 transition-all duration-700 ease-out;
   }
+
   .reveal-zoom {
     @apply scale-90 opacity-0 transition-all duration-700 ease-out;
   }
+
+  /* Permite la visualización del elemento cuando se cumple la condición del trigger */
   .is-revealed {
     @apply translate-x-0 translate-y-0 scale-100 opacity-100;
   }
@@ -188,10 +219,12 @@
   .img-shine {
     @apply relative overflow-hidden;
   }
+
   .img-shine::after {
     content: "";
     @apply pointer-events-none absolute top-1/2 left-1/2 h-0 w-[215%] -translate-x-1/2 -translate-y-1/2 rotate-[-45deg] bg-white/30 transition-all duration-500 ease-linear;
   }
+
   .img-shine:hover::after {
     @apply h-[250%] bg-transparent;
   }
@@ -201,13 +234,15 @@
      `card-premium-child` on inner elements that should react too. */
   .card-premium {
     @apply relative transition-all duration-500 ease-out;
-    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0,0,0,0.55)];
+    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0, 0, 0, 0.55)];
   }
+
   .card-premium::before {
     content: "";
     @apply pointer-events-none absolute inset-0 -z-10 rounded-[inherit] opacity-0 transition-opacity duration-500;
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 45%, transparent);
   }
+
   .card-premium:hover::before {
     @apply opacity-100;
   }
@@ -217,6 +252,7 @@
     box-shadow: 0 0 0 0 transparent;
     transition: box-shadow 0.5s ease;
   }
+
   .glow-accent:hover {
     box-shadow:
       0 0 30px -4px color-mix(in srgb, var(--color-accent) 55%, transparent),
@@ -233,6 +269,7 @@
       opacity 0.4s ease,
       transform 0.4s ease;
   }
+
   .logo-force-white:hover {
     opacity: 1;
     transform: scale(1.08);
@@ -245,17 +282,16 @@
    background. Declared outside @layer so specificity always wins over
    plain utility backgrounds. */
 .btn-gradient-border {
-  background: linear-gradient(
-    120deg,
-    color-mix(in srgb, var(--color-accent) 80%, transparent) 0%,
-    transparent 35%,
-    transparent 65%,
-    color-mix(in srgb, var(--color-accent) 80%, transparent) 100%
-  );
+  background: linear-gradient(120deg,
+      color-mix(in srgb, var(--color-accent) 80%, transparent) 0%,
+      transparent 35%,
+      transparent 65%,
+      color-mix(in srgb, var(--color-accent) 80%, transparent) 100%);
   background-size: 220% 220%;
   background-position: 0% 50%;
   transition: background-position 0.6s ease;
 }
+
 .btn-gradient-border:hover {
   background-position: 100% 50%;
 }
@@ -265,6 +301,7 @@
 .marquee-track {
   animation: marquee 30s linear infinite;
 }
+
 .marquee-track:hover {
   animation-play-state: paused;
 }

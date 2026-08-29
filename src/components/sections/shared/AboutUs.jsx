@@ -1,6 +1,9 @@
 import React from 'react'
 import RevealImage from '../../ui/RevealImage'
 import Counter from '../../ui/Counter'
+import SectionTitle from '../../ui/SectionTitle'
+import Reveal from '../../ui/Reveal'
+import Button from '../../ui/Button'
 
 const AboutUs = () => {
   return (
@@ -30,7 +33,42 @@ const AboutUs = () => {
 
           {/* Conten - right side */}
           <div>
+            <SectionTitle
+              eyebrown="About us"
+              title="Transforming brands with"
+              accent="social media"
+            />
 
+            <Reveal delay={0.2}>
+              <p>
+                Revolutionizing Brand Identity Through Creative Social Media Strategies That Drive Engagement,
+                Build Connections, and Deliver Results Empowering Businesses to Stand Out, Reach Their Audience.
+              </p>
+            </Reveal>
+
+            <Reveal
+              delay={0.4}
+              className='mt-6 flex flex-wrap items-center gap-8'
+            >
+              <Button
+                href="/about"
+              >
+                More about
+              </Button>
+
+              <div className='flex items-center gap-4'>
+                <img
+                  src="/images/author-image.jpg"
+                  alt="Sarah Mitchell"
+                  className='h-14 w-14 rounded-full object-cover'
+                />
+
+                <div >
+                  <h3 className='text-lg font-bold text-primary capitalize'>Sarah Mitchell</h3>
+                  <p className='mb-0 text-sm capitalize'>Marketing director</p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>
