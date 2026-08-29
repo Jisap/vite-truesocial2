@@ -1,42 +1,43 @@
-import { describe, it, expect, beforeEach } from "vitest"
-import { render, screen, waitFor } from "@testing-library/react"
-import { triggerAllInsertion } from "@/test/utils"
-import Counter from "./Counter"
-import { useCountup } from "@/hooks/useCountup";
+// import { describe, it, expect, beforeEach } from "vitest"
+// import { render, screen, waitFor } from "@testing-library/react"
+// import { triggerAllInsertion } from "@/test/utils"
+//import Counter from "./Counter"
+import useCountUp from "../../hooks/useCountUp";
 
 
-describe("Counter", () => {
-  beforeEach(() => {
-    global.IntersectionObserver.instances = [];
-  });
 
-  it("starts at 0 before scrolling into view", () => {
-    render(<Counter end={2500} suffix="+" />)
-    expect(screen.getByText("0+")).toBeInTheDocument();
-  });
+// describe("Counter", () => {
+//   beforeEach(() => {
+//     global.IntersectionObserver.instances = [];
+//   });
 
-  it("animates up to the end value once the element intersects", async () => {
-    render(<Counter end={100} suffix="+" />);
-    triggerAllInsertion(true);
-    await waitFor(
-      () => {
-        expect(screen.getByText("100+")).toBeInTheDocument();
-      },
-      { timeout: 4000 }
-    );
+//   it("starts at 0 before scrolling into view", () => {
+//     render(<Counter end={2500} suffix="+" />)
+//     expect(screen.getByText("0+")).toBeInTheDocument();
+//   });
 
-    it("renders decimal values when decimanls prop is set", async () => {
-      render(<Counter end={1.1} suffix="k+" decimals={1} />)
-      triggerAllInsertion(true);
-      await waitFor(
-        () => {
-          expect(screen.getByText("1.1k+")).toBeInTheDocument();
-        },
-        { timeout: 4000 }
-      );
-    })
-  })
-});
+//   it("animates up to the end value once the element intersects", async () => {
+//     render(<Counter end={100} suffix="+" />);
+//     triggerAllInsertion(true);
+//     await waitFor(
+//       () => {
+//         expect(screen.getByText("100+")).toBeInTheDocument();
+//       },
+//       { timeout: 4000 }
+//     );
+
+//     it("renders decimal values when decimanls prop is set", async () => {
+//       render(<Counter end={1.1} suffix="k+" decimals={1} />)
+//       triggerAllInsertion(true);
+//       await waitFor(
+//         () => {
+//           expect(screen.getByText("1.1k+")).toBeInTheDocument();
+//         },
+//         { timeout: 4000 }
+//       );
+//     })
+//   })
+// });
 
 const Counter = ({
   end,
@@ -46,7 +47,7 @@ const Counter = ({
   className = "",
 }) => {
 
-  const { ref, value } = useCountup(end, { decimals });
+  const { ref, value } = useCountUp(end, { decimals });
 
   return (
     <span ref={ref} className={className}>
