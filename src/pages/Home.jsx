@@ -1,4 +1,5 @@
 import Hero from '../components/sections/home/Hero'
+import AboutUs from '../components/sections/shared/AboutUs'
 import ScrollingTicker from '../components/sections/shared/ScrollingTicker'
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <>
       <Hero />
       <ScrollingTicker />
+      <AboutUs />
     </>
   )
 }
