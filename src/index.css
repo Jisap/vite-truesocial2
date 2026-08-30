@@ -234,7 +234,7 @@
      `card-premium-child` on inner elements that should react too. */
   .card-premium {
     @apply relative transition-all duration-500 ease-out;
-    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0, 0, 0, 0.55)];
+    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0,0,0,0.55)];
   }
 
   .card-premium::before {
