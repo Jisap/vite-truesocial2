@@ -70,6 +70,21 @@ const OurServices = () => {
             ))}
           </div>
         </div>
+
+        <Reveal
+          delay={0.8}
+          className="mt-14 border-t border-primary/20 pt-10 text-center"
+        >
+          <p className="mb-0 text-xl">
+            <span className="mr-2 rounded-full bg-accent px-4 py-1 text-sm font-bold text-dark uppercase">
+              Free
+            </span>{" "}
+            Let&apos;s make something great work together.{" "}
+            <a href="/contact" className="font-bold text-accent underline-offset-4 hover:underline">
+              Get Free Quote
+            </a>
+          </p>
+        </Reveal>
       </div>
     </section>
   )
