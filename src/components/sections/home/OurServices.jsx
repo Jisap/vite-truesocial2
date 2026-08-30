@@ -40,32 +40,32 @@ const OurServices = () => {
               <Reveal
                 key={service.slug}
                 delay={i * 0.2}
-                className="card-premium group rounded-[20px] border border-divider p-8 transition-colors duration-300 hover:border-accent/60"
+                className="h-full"
               >
-                <span className="mb-6 inlineflex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 transition-all
-                duration-500 ease-out group-hover:rotate-12 group-hover:bg-accent/20"
-                >
-                  <img
-                    src={service.icon}
-                    alt=""
-                    className="h-7 w-7 mb-3"
-                  />
-                </span>
+                <div className="card-premium group h-full rounded-[20px] border border-divider p-8 transition-colors duration-300 hover:border-accent/60 flex flex-col">
+                  <span className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 transition-all duration-500 ease-out group-hover:rotate-12 group-hover:bg-accent/20">
+                    <img
+                      src={service.icon}
+                      alt=""
+                      className="h-7 w-7"
+                    />
+                  </span>
 
-                <h3 className="mb-3 text-lg font-bold text-primary capitalize">
-                  {service.title}
-                </h3>
+                  <h3 className="mb-3 text-lg font-bold text-primary capitalize">
+                    {service.title}
+                  </h3>
 
-                <p className="mb-4 text-sm">
-                  {service.excerpt}
-                </p>
+                  <p className="mb-4 text-sm text-body/80 flex-1">
+                    {service.excerpt}
+                  </p>
 
-                <Button
-                  href={`/SERVICES/${service.slug}`}
-                  variant="readmore"
-                >
-                  read more
-                </Button>
+                  <Button
+                    href={`/services/${service.slug}`}
+                    variant="readmore"
+                  >
+                    read more
+                  </Button>
+                </div>
               </Reveal>
             ))}
           </div>
