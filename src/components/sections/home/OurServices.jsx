@@ -42,7 +42,7 @@ const OurServices = () => {
                 delay={i * 0.2}
                 className="h-full"
               >
-                <div className="card-premium group h-full rounded-[20px] border border-divider p-8 transition-colors duration-300 hover:border-accent/60 flex flex-col">
+                <div className="card-premium group h-full rounded-[20px] border border-divider p-8 hover:border-accent/60 flex flex-col">
                   <span className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10 transition-all duration-500 ease-out group-hover:rotate-12 group-hover:bg-accent/20">
                     <img
                       src={service.icon}

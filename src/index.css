@@ -233,8 +233,16 @@
      rotation. Applied via `group` on the card root; combine with
      `card-premium-child` on inner elements that should react too. */
   .card-premium {
-    @apply relative transition-all duration-500 ease-out;
-    @apply hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_25px_60px_-20px_rgba(0,0,0,0.55)];
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
+    will-change: transform;
+  }
+
+  .card-premium:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.55);
   }
 
   .card-premium::before {
