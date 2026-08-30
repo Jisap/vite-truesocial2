@@ -23,7 +23,7 @@ const ServiceSidebar = () => {
         </ul>
       </Reveal>
 
-      <SidebarCta />
+      <SidebarCta delay={0.25} />
     </aside>
   )
 }
