@@ -3,7 +3,7 @@ import { services } from "../data/services"
 import ScrollingTicker from "../components/sections/shared/ScrollingTicker"
 import PageHeader from "../components/ui/PageHeader"
 import ServiceSingleContent from "../components/sections/services/ServiceSingleContent"
-
+import ServiceSidebar from "../components/sections/services/ServiceSidebar"
 
 
 
@@ -30,6 +30,10 @@ const ServiceSingle = () => {
         <div className="container-custom grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <ServiceSingleContent />
+          </div>
+
+          <div className="lg:col-span-4">
+            <ServiceSidebar />
           </div>
         </div>
       </section>
