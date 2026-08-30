@@ -2,6 +2,7 @@ import Marquee from "../../ui/Marquee"
 import { clientLogos } from "../../../data/clientLogos"
 
 
+
 const ScrollingTicker = () => {
   return (
     <div className="relative border-y border-divider py-10">
