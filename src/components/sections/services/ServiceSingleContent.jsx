@@ -2,8 +2,8 @@ import AnimatedText from "../../ui/AnimatedText"
 import Reveal from "../../ui/Reveal"
 import RevealImage from "../../ui/RevealImage"
 import { serviceEntryList, serviceProcessSteps } from "../../../data/serviceDetail"
-
-
+import { faqs } from "../../../data/faqs"
+import AccordionItem from "../../../components/ui/AccordionItem"
 
 
 const ServiceSingleContent = () => {
@@ -85,6 +85,72 @@ const ServiceSingleContent = () => {
         accent="process of social marketing"
         className="text-[32px] font-light text-primary lg:text-[38px]"
       />
+
+      <Reveal>
+        <p>
+          Our social marketing process begins with discovery and research to understand your goals. We then
+          develop a tailored strategy and implement campaigns across various channels. Continuous monitoring and
+          optimization ensure effectiveness, followed by regular reporting to track performance. Finally, we refine
+          and scale efforts for sustained growth and success.
+        </p>
+      </Reveal>
+
+      <div className="flex flex-col gap-6">
+        {serviceProcessSteps.map((step, i) => (
+          <Reveal
+            key={step.no}
+            delay={0.2 + i * 0.2}
+            className="grid items-center gap-6 rounded-[20px] border border-divider p-6 sm:grid-cols-[auto_1fr_auto]"
+          >
+            <img
+              src={step.image}
+              alt="Process step image"
+              className="w-24 h-24 rounded-[14px] object-cover"
+            />
+
+            <div>
+              <div className="mb-2 flex items-center gap-3">
+                <img
+                  src={step.icon}
+                  alt="step icon"
+                  className="h-8 w-8"
+                />
+
+                <h3 className="text-sm font-bold tracking-wide text-accent uppercase">
+                  step <span>{step.no}</span>
+                </h3>
+              </div>
+
+              <h3 className="mb-2 text-l font-bold text-primary capitalize">
+                {step.title}
+              </h3>
+
+              <p className="mb-0 text-sm">
+                {step.excerpt}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="mt-6">
+        <AnimatedText
+          as="h2"
+          variant="chars"
+          text="Lets address your"
+          accent="questions today!"
+          className="mb-6 text-[32px font-light text-primary lg:text-[38px]"
+        />
+
+        {faqs.map((faq, i) => (
+          <AccordionItem
+            key={faq.question}
+            question={faq.question}
+            answer={faq.answer}
+            defaultOpen={i === 1}
+          />
+        ))}
+      </div>
     </div>
   )
 }
