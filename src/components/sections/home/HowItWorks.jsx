@@ -92,6 +92,14 @@ const HowItWorks = () => {
                         <h3 className="mb-1 text-lg font-bold text-primary capitalize">{step.title}</h3>
                         <p className="mb-0 text-sm">{step.excerpt}</p>
                       </div>
+
+                      <h2 className={`
+                        shrink-0 text-3xl font-bold
+                        ${active === i ? "text-accent" : "text-primary/30"}  
+                      `}
+                      >
+                        {step.no}
+                      </h2>
                     </div>
                   </div>
                 </Reveal>
