@@ -60,6 +60,8 @@ const WhyChooseUs = () => {
                 />
               </div>
             </div>
+
+            <ChoiceList items={whyChooseRight} />
           </div>
         </div>
       </section>
