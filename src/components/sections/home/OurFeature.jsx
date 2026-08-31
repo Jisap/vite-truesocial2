@@ -71,6 +71,10 @@ const OurFeature = () => {
                 alt="Social Growth Image"
                 className="img-shine aspect-square h-full w-full rounded-[20px]"
               />
+
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
+                <SatisfiedClientsBadge className="rounded-[20px]" />
+              </div>
             </div>
           </div>
         </div>
