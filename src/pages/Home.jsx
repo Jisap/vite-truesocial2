@@ -1,6 +1,7 @@
 import Hero from '../components/sections/home/Hero'
 import OurBrands from '../components/sections/home/OurBrands'
 import OurFeature from '../components/sections/home/OurFeature'
+import OurPricing from '../components/sections/home/OurPricing'
 import OurServices from '../components/sections/home/OurServices'
 import AboutUs from '../components/sections/shared/AboutUs'
 import KeyFacts from '../components/sections/shared/KeyFacts'
@@ -18,6 +19,7 @@ const Home = () => {
       <WhyChooseUs />
       <OurFeature />
       <KeyFacts />
+      <OurPricing />
     </>
   )
 }

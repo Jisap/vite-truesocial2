@@ -13,7 +13,7 @@ export const pricingPlans = [
     tagline: "Start at $39 included 3 client",
     price: 39,
     highlighted: true,
-    features: ["24/7 customer support", "Multi-platform integration", "Free initial consultation"],
+    features: ["Diseños personalizados", "creacion de branding completo", "Diseño web profesional"],
   },
   {
     icon: "/images/icon-pricing-1.svg",
@@ -21,7 +21,7 @@ export const pricingPlans = [
     tagline: "Start at $49 included 3 client",
     price: 49,
     highlighted: false,
-    features: ["24/7 customer support", "Multi-platform integration", "Free initial consultation"],
+    features: ["SEO, Analisis de la competencia", "Campañas en meta ads"],
   },
 ];
 
@@ -37,6 +37,6 @@ export const pricingBodyList = [
   {
     title: "Flexible subscription options",
     excerpt:
-      "Our customizable packages are designed to meet your unique marketing needs. Whether you're a startup.",
+      "Our subscription plans are designed to meet your unique marketing needs, and they are flexible enough to adjust as your business grows.",
   },
 ];
