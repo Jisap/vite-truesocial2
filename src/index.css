@@ -319,3 +319,20 @@
 .cursor-outline {
   @apply pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference;
 }
+
+/* Testimonials Swiper Pagination */
+.testimonial-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  opacity: 1;
+  border-radius: 9999px;
+  margin: 0 4px !important;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.testimonial-pagination .swiper-pagination-bullet-active {
+  background-color: var(--color-accent, #bff747);
+  width: 24px;
+}

@@ -9,7 +9,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Working with this team has a game-changer for our brand engagement skyrocketed, we've seen a noticeable increase in sales.",
+      "Awesome Marketing Service, Highly Recommended!. In my opinion this is the best marketing service I have used.",
     name: "Arlene McCoy",
     role: "Co Founder",
     avatar: "/images/author-2.jpg",
@@ -17,7 +17,7 @@ export const testimonials = [
   },
   {
     quote:
-      "Working with this team has a game-changer for our brand engagement skyrocketed, we've seen a noticeable increase in sales.",
+      "Great service! The team is very professional and responsive. Our business has grown significantly since we started working with them.",
     name: "Arlene McCoy",
     role: "Co Founder",
     avatar: "/images/author-3.jpg",
