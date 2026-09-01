@@ -22,6 +22,13 @@ const BlogSingle = () => {
         current={post.title}
       />
 
+      <ScrollingTicker />
+
+      <section className="py-20 lg:py-[100px]">
+        <div className="container-custom mx-auto max-w-[860px]">
+          <BlogSingleContent post={post} />
+        </div>
+      </section>
     </>
   )
 }
