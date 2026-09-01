@@ -1,5 +1,6 @@
 import Hero from '../components/sections/home/Hero'
 import HowItWorks from '../components/sections/home/HowItWorks'
+import OurBlog from '../components/sections/home/OurBlog'
 import OurBrands from '../components/sections/home/OurBrands'
 import OurFeature from '../components/sections/home/OurFeature'
 import OurPricing from '../components/sections/home/OurPricing'
@@ -26,6 +27,7 @@ const Home = () => {
       <HowItWorks />
       <OurTestimonial />
       <OurFaqs />
+      <OurBlog />
     </>
   )
 }
