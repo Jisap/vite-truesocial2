@@ -6,6 +6,7 @@ import OurPricing from '../components/sections/home/OurPricing'
 import OurServices from '../components/sections/home/OurServices'
 import AboutUs from '../components/sections/shared/AboutUs'
 import KeyFacts from '../components/sections/shared/KeyFacts'
+import OurFaqs from '../components/sections/shared/OurFaqs'
 import OurTestimonial from '../components/sections/shared/OurTestimonial'
 import ScrollingTicker from '../components/sections/shared/ScrollingTicker'
 import WhyChooseUs from '../components/sections/shared/WhyChooseUs'
@@ -24,6 +25,7 @@ const Home = () => {
       <OurPricing />
       <HowItWorks />
       <OurTestimonial />
+      <OurFaqs />
     </>
   )
 }
