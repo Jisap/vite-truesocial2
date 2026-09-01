@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom"
-import { footerLinks, footerSocialLinks } from "@/data/footer";
-import { siteConfig } from "../../data/siteConfig";
-import SectionTitle from "../ui/SectionTitle";
-
-
+import { footerLinks, footerSocialLinks } from "@/data/footer"
+import { siteConfig } from "../../data/siteConfig"
+import SectionTitle from "../ui/SectionTitle"
 
 const Footer = () => {
   return (
@@ -12,16 +10,16 @@ const Footer = () => {
         {/* Lets Work Together band */}
         <div className="relative py-20">
           <div className="container-custom">
-            <div className="relative bg-[url('/images/work-together-bg.png)] bg-center bg-no-repeat py-24 text-center">
+            <div className="relative bg-[url('/images/work-together-bg.png')] bg-center bg-no-repeat py-24 text-center">
               <h3 className="mb-5 text-[22px] font-bold tracking-wide text-primary uppercase">
                 Let's Collaborate
               </h3>
 
-              <h2 className="text-[42px] leading-none font-extrabold text-primary uppercase sm:text-[8px] lg:text-[130px] xl:text-[180px]">
+              <h2 className="text-[42px] leading-none font-extrabold text-primary uppercase sm:text-[80px] lg:text-[130px] xl:text-[180px]">
                 Let's Work Together
               </h2>
 
-              <div className="absolute top-1/2 lef-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <Link
                   to="/"
                   className="group glow-accent flex h-[110px] w-[110px] flex-col items-center justify-center rounded-full bg-accent text-accent
@@ -36,7 +34,7 @@ const Footer = () => {
                       d="M7 17 17 7M9 7h8v8"
                       stroke="currentColor"
                       strokeWidth="2"
-                      strokeLineCap="round"
+                      strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
@@ -48,6 +46,10 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        <div>
+
         </div>
       </footer>
     </>
