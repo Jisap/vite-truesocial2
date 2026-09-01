@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { footerLinks, footerSocialLinks } from "@/data/footer"
 import { siteConfig } from "../../data/siteConfig"
 import SectionTitle from "../ui/SectionTitle"
+import FooterColumn from "../ui/FooterColumn"
 
 const Footer = () => {
   return (
@@ -85,6 +86,22 @@ const Footer = () => {
                   </button>
                 </form>
               </div>
+
+              <FooterColumn
+                title="Quick Links"
+                links={footerLinks.quickLinks}
+                className="md:col-span-4 lg:col-span-2"
+              />
+              <FooterColumn
+                title="Services"
+                links={footerLinks.services}
+                className="md:col-span-4 lg:col-span-2"
+              />
+              <FooterColumn
+                title="Support"
+                links={footerLinks.support}
+                className="md:col-span-4 lg:col-span-2"
+              />
             </div>
           </div>
         </div>
