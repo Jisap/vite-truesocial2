@@ -24,6 +24,16 @@ const OurBlog = () => {
               </Button>
             </Reveal>
           </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {blogPosts.slice(0, 3).map((post, i) => (
+              <BlogCard
+                key={post.slug}
+                post={post}
+                delay={i * 0.2}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </>
