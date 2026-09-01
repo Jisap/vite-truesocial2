@@ -102,6 +102,40 @@ const Footer = () => {
                 links={footerLinks.support}
                 className="md:col-span-4 lg:col-span-2"
               />
+
+              <div className="md:col-span-12">
+                <div className="relative flex flex-wrap items-center gap-8 overflow-hidden rounded-[30px] border border-divider bg-secondary/40
+                p-8 backdrop-blur-[100px] transition-colors duration-500 hover:border-accent/40 sm:p-[50px_60px]"
+                >
+                  <img
+                    src={siteConfig.logo}
+                    alt="logo"
+                    className="max-w-[180px]"
+                  />
+
+                  <div className="ml-auto flex flex-wrap items-center justify-end gap-y-5">
+                    <div className="flex items-center gap-4 border-r border-divider pr-10">
+                      <i className="fa-solid fa-phone-volume text-2xl text-accent"></i>
+                      <a
+                        href={`tel:${siteConfig.phone}`}
+                        className="text-lg font-bold text-primary transition-colors duration-300 hover:text-accent"
+                      >
+                        {siteConfig.phone}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center gap-4 pl-2">
+                      <i className="fa-solid fa-envelope text-2xl text-accent"></i>
+                      <a
+                        href={`mailto:${siteConfig.email}`}
+                        className="text-lg font-bold text-primary transition-colors duration-300 hover:text-accent"
+                      >
+                        {siteConfig.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
