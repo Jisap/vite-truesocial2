@@ -70,6 +70,35 @@ const BlogSingleContent = ({ post }) => {
           </p>
         </Reveal>
       </div>
+
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-divider pt-8">
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <span className="font-bold text-primary">Tags: </span>
+          {blogDetailBody.tags.map((tag) => (
+            <a
+              key={tag}
+              className="rounded-full border border-divider px-4 p-1 capitalize transition-colors duration-300 hover:border-accent hover:text-accent"
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+
+        <ul className="flex gap-3">
+          {blogShareLinks.map((s) => (
+            <li key={s.icon}>
+              <a
+                href={s.href}
+                aria-label={s.icon}
+                className="flex h-10 w-10 items-center justify-center border border-divider text-primary transition-colors duration-300
+                hover:border-accent hover:text-accent"
+              >
+                <i className={s.icon}></i>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   )
 }
