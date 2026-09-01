@@ -52,7 +52,7 @@ const OurTestimonial = () => {
               <SwiperSlide key={i}>
                 <div className="flex h-full flex-col rounded-[24px] border border-divider p-8">
                   <p className="mb-6 flex-1 text-base italic">
-                    &quote;{t.quote}&rdquo;
+                    &ldquo;{t.quote}&rdquo;
                   </p>
 
                   <div className="mb-6 flex items-center gap-4">
