@@ -3,6 +3,7 @@ import Header from "./Header"
 import { useEffect } from "react"
 import Preloader from "./Preloader";
 import CustomCursor from "../ui/CustomCursor";
+import Footer from "./Footer";
 
 
 
@@ -29,6 +30,7 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }
