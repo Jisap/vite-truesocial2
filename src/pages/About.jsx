@@ -1,5 +1,6 @@
 
 import OurApproach from "../components/sections/about/OurApproach";
+import WhatWeDo from "../components/sections/about/WhatWeDo";
 import AboutUs from "../components/sections/shared/AboutUs";
 import ScrollingTicker from "../components/sections/shared/ScrollingTicker";
 import WhyChooseUs from "../components/sections/shared/WhyChooseUs";
@@ -21,6 +22,8 @@ const About = () => {
       <OurApproach />
 
       <WhyChooseUs />
+
+      <WhatWeDo />
     </>
   )
 }
