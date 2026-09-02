@@ -137,6 +137,27 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+
+            {/* Copyright */}
+            <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-t border-divider py-8">
+              <p className="mb-0">
+                Copyright {new Date().getFullYear()} © {siteConfig.siteName}. All Rights Reserved
+              </p>
+
+              <ul className="flex flex-wrap items-center gap-6">
+                {footerSocialLinks.map((link) => (
+                  <li key={link.name}>
+                    <a
+                      href={link.href}
+                      className="inline-flex items-center gap-2 text-primary transition-all duration-300 hover:-translate-y-0.5 hover:text-accent"
+                    >
+                      <i className={link.icon}></i>
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </footer>
