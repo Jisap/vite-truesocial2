@@ -1,11 +1,14 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 import Layout from "./components/layout/Layout"
-import ServiceSingle from "./pages/ServiceSingle";
-import BlogSingle from "./pages/BlogSingle";
+
+
 
 
 const Home = lazy(() => import("@/pages/Home")); // Lazy load the Home component.
+const ServiceSingle = lazy(() => import("@/pages/ServiceSingle"));
+const BlogSingle = lazy(() => import("@/pages/BlogSingle"));
+const About = lazy(() => import("@/pages/About"));
 
 export default function App() {
   return (
@@ -16,6 +19,7 @@ export default function App() {
 
           <Route path="services/:slug" element={<ServiceSingle />} />
           <Route path="blog/:slug" element={<BlogSingle />} />
+          <Route path="about" element={<About />} />
         </Route>
       </Routes>
     </Suspense>
