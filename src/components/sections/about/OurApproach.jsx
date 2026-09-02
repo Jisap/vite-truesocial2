@@ -38,6 +38,34 @@ const OurApproach = () => {
                 ))}
               </div>
             </div>
+
+            <div className="relative grid grid-cols-2 gap-5">
+              <div className="flex flex-col gap-5">
+                <RevealImage
+                  src="/images/approach-img-1.jpg"
+                  alt="approach1"
+                  className="img-shine aspect-square w-full rounded-[20px]"
+                />
+
+                <RevealImage
+                  src="/images/approach-img-2.jpg"
+                  alt="approach2"
+                  className="img-shine aspect-square w-full rounded-[20px]"
+                />
+              </div>
+
+              <RevealImage
+                src="/images/approach-img-3.jpg"
+                alt="approach3"
+                className="img-shine aspect-square w-full h-full rounded-[20px]"
+              />
+
+              <img
+                src="/images/approach-image-circle.png"
+                alt="circle"
+                className="animate-spin-slow pointer-events-none absolute top-1/2 left-1/2 w-24 -translate-x-1/2 -translate-y-1/2"
+              />
+            </div>
           </div>
         </div>
       </section>
