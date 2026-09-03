@@ -19,6 +19,36 @@ const TeamCard = ({ member, delay = 0 }) => {
             />
           </Link>
         </div>
+
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h3 className="text-lg font-bold text-primary capitalize">
+              <Link
+                to={`/team/${member.slug}`}
+                className="transition-colors duration-300 hover:text-accent"
+              >
+                {member.name}
+              </Link>
+            </h3>
+
+            <p className="mb-0 text-sm">
+              {member.role}
+            </p>
+          </div>
+
+          <ul className="flex gap-2">
+            {teamSocialLinks.map((s) => (
+              <li
+                key={s.icon}
+                aria-label={s.icon}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-divider text-sm text-primary transition-all
+                duration-300 hover:-translate-y-0.5 hover:rotate-6 hover:border-accent hover:text-accent hover:shadw-[0_0_14px_-2px_rgba(191.247.71,0.6)]"
+              >
+                <i className={s.icon}></i>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Reveal>
     </>
   )
