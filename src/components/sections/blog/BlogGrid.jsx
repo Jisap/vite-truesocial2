@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
+import gsap from 'gsap'
 import BlogCard from '../../ui/BlogCard'
 import { blogPosts } from '../../../data/blogPosts'
 import Pagination from '../../ui/Pagination'
@@ -7,6 +8,8 @@ const POSTS_PER_PAGE = 6
 
 const BlogGrid = () => {
   const [currentPage, setCurrentPage] = useState(1)
+  const gridRef = useRef(null)
+  const isFirstRender = useRef(true) // evita animar en el montaje inicial (Reveal ya se encarga de esa entrada)
 
   const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE)                 // número total de páginas (18/6 = 3)
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE                           // indice de inicio de la página actual (1-1)*6 = 0
@@ -49,11 +52,34 @@ const BlogGrid = () => {
     }
   }
 
+  // Anima la entrada de las tarjetas cada vez que cambia la página
+  useLayoutEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+
+    const cards = gridRef.current?.children
+    if (!cards || cards.length === 0) return
+
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 24 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.07,
+        ease: 'power2.out',
+      }
+    )
+  }, [currentPage])
+
   return (
     <>
       <section id="blog-grid-section" className='py-20 lg:py-[100px]'>
         <div className='container-custom'>
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
+          <div ref={gridRef} className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
             {currentPosts.map((post, i) => (
               <BlogCard
                 key={`${post.slug}-${currentPage}`}
