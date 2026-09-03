@@ -11,6 +11,7 @@ const ServiceSingle = lazy(() => import("@/pages/ServiceSingle"));
 const BlogSingle = lazy(() => import("@/pages/BlogSingle"));
 const About = lazy(() => import("@/pages/About"));
 const Services = lazy(() => import("@/pages/Services"));
+const Blog = lazy(() => import("@/pages/Blog"));
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="services" element={<Services />} />
           <Route path="services/:slug" element={<ServiceSingle />} />
+          <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogSingle />} />
           <Route path="about" element={<About />} />
         </Route>

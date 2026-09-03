@@ -1,9 +1,21 @@
-import React from 'react'
+import ScrollingTicker from "../components/sections/shared/ScrollingTicker"
+import PageHeader from "../components/ui/PageHeader"
+
+
+
 
 const Blog = () => {
-    return (
-        <div>Blog</div>
-    )
+  return (
+    <>
+      <PageHeader
+        title="our"
+        accent="blog"
+        current="blog"
+      />
+
+      <ScrollingTicker />
+    </>
+  )
 }
 
 export default Blog
