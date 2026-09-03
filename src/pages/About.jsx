@@ -1,5 +1,6 @@
 
 import OurApproach from "../components/sections/about/OurApproach";
+import OurSolution from "../components/sections/about/OurSolution";
 import TeamPreview from "../components/sections/about/TeamPreview";
 import WhatWeDo from "../components/sections/about/WhatWeDo";
 import AboutUs from "../components/sections/shared/AboutUs";
@@ -30,6 +31,8 @@ const About = () => {
       <KeyFacts />
 
       <TeamPreview />
+
+      <OurSolution />
     </>
   )
 }
