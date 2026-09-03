@@ -26,6 +26,12 @@ const ServicesGrid = () => {
 
               <h3 className="mb-3 text-lg font-bold text-primary capitalize">{service.title}</h3>
               <p className="mb-4 text-sm">{service.excerpt}</p>
+              <Button
+                href={`/services/${service.slug}`}
+                variant="readmore"
+              >
+                read more
+              </Button>
             </Reveal>
           ))}
         </div>
