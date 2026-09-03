@@ -6,7 +6,7 @@ const Pagination = ({ current = 1, total = 3 }) => {
 
   return (
     <>
-      <nav classname="mt-6 flex items-center gap-3" aria-label="Pagination">
+      <nav className="mt-12 flex items-center justify-center gap-3" aria-label="Pagination">
         <a
           href="#"
           aria-label="Previous page"
@@ -22,7 +22,7 @@ const Pagination = ({ current = 1, total = 3 }) => {
             className={`flex h-11 w-11 items-center justify-center rounded-full border text-sm font-bold transition-color duration-300
                 ${page === current
                 ? "border-accent bg-accent text-black"
-                : "border divider text-primary hover:border-accent"
+                : "border-divider text-primary hover:border-accent"
               } 
               `}
           >
