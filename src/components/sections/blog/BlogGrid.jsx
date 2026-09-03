@@ -8,16 +8,44 @@ const POSTS_PER_PAGE = 6
 const BlogGrid = () => {
   const [currentPage, setCurrentPage] = useState(1)
 
-  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE)
-  const startIndex = (currentPage - 1) * POSTS_PER_PAGE
-  const currentPosts = blogPosts.slice(startIndex, startIndex + POSTS_PER_PAGE)
+  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE)                 // número total de páginas (18/6 = 3)
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE                           // indice de inicio de la página actual (1-1)*6 = 0
+  const currentPosts = blogPosts.slice(startIndex, startIndex + POSTS_PER_PAGE)   // posts de la página actual [0, 6)
+
+  const smoothScrollTo = (targetY, duration = 800) => {                           // función de scroll suave
+    const startY = window.pageYOffset
+    const diff = targetY - startY
+    if (Math.abs(diff) < 5) return
+
+    let startTime = null
+
+    // Función de easing cúbico suave (easeInOutCubic)
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+
+    const animation = (currentTime) => {
+      if (startTime === null) startTime = currentTime
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easeProgress = easeInOutCubic(progress)
+
+      window.scrollTo(0, startY + diff * easeProgress)
+
+      if (elapsed < duration) {
+        requestAnimationFrame(animation)
+      }
+    }
+
+    requestAnimationFrame(animation)
+  }
 
   const handlePageChange = (page) => {
     setCurrentPage(page)
-    // Scroll suave hacia el inicio de la sección de posts al cambiar de página
     const section = document.getElementById('blog-grid-section')
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      // Offset de 100px para no quedar tapado por el header y dejar un margen agradable
+      const targetPosition = section.getBoundingClientRect().top + window.pageYOffset - 100
+      smoothScrollTo(Math.max(0, targetPosition), 850)
     }
   }
 
