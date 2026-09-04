@@ -123,6 +123,15 @@ const ProjectSingleContent = ({ project }) => {
             accent="question today !"
             className="text-[32px] font-light text-primary lg:text-[38px]"
           />
+
+          {faqs.map((item, i) => (
+            <AccordionItem
+              key={item.question}
+              question={item.question}
+              answer={item.answer}
+              defaultOpen={i === 1}
+            />
+          ))}
         </div>
       </div>
     </>
