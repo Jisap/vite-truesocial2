@@ -39,7 +39,7 @@ const ProjectFilterGrid = () => {
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {visibleProjects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} delay={i * 100} />
+              <ProjectCard key={project.id} project={project} delay={i * 0.15} />
             ))}
           </div>
         </div>

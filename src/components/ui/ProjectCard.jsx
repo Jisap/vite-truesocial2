@@ -45,6 +45,19 @@ const ProjectCard = ({ project, delay }) => {
             />
           </svg>
         </Link>
+
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-dark/95 to-transparent p-6 pt-14 transition-transform
+         duration-500 ease-out group-hover:-translate-y-1"
+        >
+          <h3 className="mb-0 text-lg font-bold text-primary capitalize">
+            <Link
+              to={`/projects/${project.slug}`}
+              className="transition-colors duration-300 hover:text-accent"
+            >
+              {project.title}
+            </Link>
+          </h3>
+        </div>
       </Reveal>
     </>
   )
