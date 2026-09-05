@@ -10,7 +10,7 @@ import { teamContactDefaults, teamCareerList, getTeamBio, getCareerIntro } from 
 
 const contactBoxes = [
   { icon: "/images/icon-phone-accent.svg", label: "call", value: `Mobile: ${teamContactDefaults.phone}` },
-  { icon: "/images/icon-email-accent.svg", label: "email address", value: `${teamContactDefaults.email}` },
+  { icon: "/images/icon-mail-accent.svg", label: "email address", value: `${teamContactDefaults.email}` },
   { icon: "/images/icon-location-accent.svg", label: "address", value: `${teamContactDefaults.address}` },
 ]
 
@@ -58,7 +58,30 @@ const TeamSingle = () => {
             </Reveal>
 
             {/* Contact Boxes */}
+            <div className='mb-14 grid gap-6 sm:grid-cols-3'>
+              {contactBoxes.map((box, i) => (
+                <Reveal
+                  key={box.label}
+                  delay={1 * 0.2}
+                  className='rounded-[20px] border border-divider p-6'
+                >
+                  <img
+                    src={box.icon}
+                    alt={`${box.label} icon`}
+                    className='mb-4 h-8 w-8'
+                  />
 
+                  <h3 className='mb-1 text-base font-bold text-primary capitalize'>{box.label}</h3>
+
+                  <p className='mb-0 text-sm break-word'>{box.value}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Personal Info */}
+            <div>
+
+            </div>
           </div>
         </div>
       </section>
