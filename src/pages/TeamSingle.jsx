@@ -29,6 +29,7 @@ const TeamSingle = () => {
 
       <section className='py-20 lg:py-[100px]'>
         <div className='container-custom grid gap-12 lg:grid-cols-12'>
+          {/* Columna Izquierda */}
           <div className='order-2 lg:order-1 lg:col-span-8'>
             {/* info header */}
             <Reveal className='mb-10 flex flex-wrap items-center justify-between gap-6 border-b border-divider pb-10'>
@@ -121,6 +122,23 @@ const TeamSingle = () => {
                 </ul>
               </Reveal>
             </div>
+          </div>
+
+          {/* Columna Derecha */}
+          <div className='order-1 lg:order-2 lg:col-span-4'>
+            <RevealImage
+              src={member.image}
+              alt={member.name}
+              className='img-shine mb-8 aspect-[4/5] w-full rounded-[20px]'
+            />
+
+            <Reveal delay={0.25} className='rounded-[20px] border border-divider p-8'>
+              <h3 className='mb-6 text-lg font-bold text-primary'>
+                Contact <span className='text-accent'>me</span>
+              </h3>
+
+              <MemberContactForm />
+            </Reveal>
           </div>
         </div>
       </section>
