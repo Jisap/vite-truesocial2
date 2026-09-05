@@ -41,7 +41,24 @@ const TeamSingle = () => {
                   {member.name}
                 </h2>
               </div>
+
+              <ul className='flex gap-3'>
+                {teamSocialLinks.filter((s) => s.icon !== "fa-brands fa-x-twitter").map((s) => (
+                  <li key={s.icon}>
+                    <a
+                      href={s.href}
+                      aria-label={s.icon}
+                      className='flex h-10 w-10 items-center justify-center rounded-full border border-divider transition-colors
+                      duration-300 hover:border-accent hover:text-accent'>
+                      <i className={s.icon} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
+
+            {/* Contact Boxes */}
+
           </div>
         </div>
       </section>
