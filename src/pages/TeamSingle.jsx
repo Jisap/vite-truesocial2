@@ -24,7 +24,7 @@ const TeamSingle = () => {
 
   return (
     <>
-      <PageHeader title="Team" accent="Details" current="Team Details" />
+      <PageHeader title="Team" accent="Details" current={member.name} />
       <ScrollingTicker />
 
       <section className='py-20 lg:py-[100px]'>
