@@ -79,8 +79,47 @@ const TeamSingle = () => {
             </div>
 
             {/* Personal Info */}
-            <div>
+            <div className='mb-14'>
+              <AnimatedText
+                as="h2"
+                variant="chars"
+                text="Personal"
+                accent="info"
+                className='mb-6 text-[32px] font-light text-primary lg:text-[38px]'
+              />
 
+              {bio.map((p, i) => (
+                <Reveal
+                  key={i}
+                  delay={i * 0.2}
+                >
+                  <p>{p}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* Career Guidelines */}
+            <div>
+              <AnimatedText
+                as="h2"
+                variant="chars"
+                text="Career"
+                accent="guidelines"
+                className='mb-6 text-[32px] font-light text-primary lg:text-[38px]'
+              />
+
+              <Reveal
+                delay={0.2}
+              >
+                <ul className='m-0 grid list-none gap-4 p-0 sm:grid-cols-2'>
+                  {teamCareerList.map((item) => (
+                    <li key={item} className='flex items-center gap-3 text-sm capitalize'>
+                      <i className='fa-solid fa-circle-check mt-1 text-accent' />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </div>
           </div>
         </div>
