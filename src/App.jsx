@@ -18,6 +18,7 @@ const Pricing = lazy(() => import("@/pages/Pricing"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const ImageGallery = lazy(() => import("@/pages/ImageGallery"));
 const VideoGallery = lazy(() => import("@/pages/VideoGallery"));
+const Faqs = lazy(() => import("@/pages/Faqs"));
 
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="gallery/image" element={<ImageGallery />} />
           <Route path="gallery/video" element={<VideoGallery />} />
+          <Route path="faqs" element={<Faqs />} />
         </Route>
       </Routes>
     </Suspense>
