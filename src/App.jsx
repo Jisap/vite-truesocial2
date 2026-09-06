@@ -15,6 +15,8 @@ const ProjectSingle = lazy(() => import("@/pages/ProjectSingle"));
 const Team = lazy(() => import("@/pages/Team"));
 const TeamSingle = lazy(() => import("@/pages/TeamSingle"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
+const Testimonials = lazy(() => import("@/pages/Testimonials"));
+
 
 export default function App() {
   return (
@@ -32,6 +34,7 @@ export default function App() {
           <Route path="team" element={<Team />} />
           <Route path="team/:slug" element={<TeamSingle />} />
           <Route path="pricing" element={<Pricing />} />
+          <Route path="testimonials" element={<Testimonials />} />
 
         </Route>
       </Routes>
