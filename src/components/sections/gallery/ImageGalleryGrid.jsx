@@ -17,7 +17,7 @@ const ImageGalleryGrid = () => {
             <Reveal
               key={image.id}
               delay={(i % 3) * 0.2}
-              className="imag-shine aspect-square overflow-hidden rounded-[20px]"
+              className="img-shine aspect-square overflow-hidden rounded-[20px]"
             >
               <button
                 type="button"
