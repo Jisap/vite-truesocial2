@@ -34,6 +34,12 @@ const VideoGalleryGrid = () => {
             </Reveal>
           ))}
         </div>
+
+        <VideoModal
+          videoId={galleryVideoId}
+          open={open}
+          onClose={() => setOpen(false)}
+        />
       </section>
     </>
   )
