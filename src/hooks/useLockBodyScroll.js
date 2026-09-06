@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 
 /**
- * Hook para bloquear el scroll del body cuando está activo (por ejemplo, al abrir un modal).
+ * Hook para bloquear el scroll del body cuando está activo (por ejemplo, al abrir un modal o mientras el sidebar esta abierto).
  *
  * Mientras `locked` sea `true`, aplica `overflow: hidden` al elemento `<body>`,
  * impidiendo que la página haga scroll independientemente de la cantidad de contenido.
