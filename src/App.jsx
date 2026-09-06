@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route } from "react-router-dom"
 import Layout from "./components/layout/Layout"
-import ImageGallery from "./pages/ImageGallery";
 
 
 
@@ -17,6 +16,7 @@ const Team = lazy(() => import("@/pages/Team"));
 const TeamSingle = lazy(() => import("@/pages/TeamSingle"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
+const ImageGallery = lazy(() => import("@/pages/ImageGallery"));
 
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
           <Route path="team/:slug" element={<TeamSingle />} />
           <Route path="pricing" element={<Pricing />} />
           <Route path="testimonials" element={<Testimonials />} />
-          <Route path="ImageGallery" element={<ImageGallery />} />
+          <Route path="gallery/image" element={<ImageGallery />} />
         </Route>
       </Routes>
     </Suspense>
