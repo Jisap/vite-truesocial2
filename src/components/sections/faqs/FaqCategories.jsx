@@ -15,6 +15,15 @@ const FaqCategories = () => {
               accent={category.accent}
               className="mb-6 text-[32px] font-light text-primary lg:text-[38px]"
             />
+
+            {category.items.map((item, i) => (
+              <AccordionItem
+                key={item.question}
+                question={item.question}
+                answer={item.answer}
+                defaultOpen={i === 0}
+              />
+            ))}
           </div>
         ))}
       </div>
