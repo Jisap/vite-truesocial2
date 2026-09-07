@@ -19,6 +19,7 @@ const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const ImageGallery = lazy(() => import("@/pages/ImageGallery"));
 const VideoGallery = lazy(() => import("@/pages/VideoGallery"));
 const Faqs = lazy(() => import("@/pages/Faqs"));
+const Contact = lazy(() => import("@/pages/Contact"));
 
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="gallery/image" element={<ImageGallery />} />
           <Route path="gallery/video" element={<VideoGallery />} />
           <Route path="faqs" element={<Faqs />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </Suspense>
